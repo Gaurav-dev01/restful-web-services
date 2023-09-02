@@ -12,9 +12,8 @@ public class UserDaoService {
 
 //	UserDaoService > Static List
 	public static List<User> users = new ArrayList<User>();
-	
+
 	private static int userCount = 0;
-	
 
 	static {
 		users.add(new User(++userCount, "Gaurav", LocalDate.now().minusYears(30)));
@@ -29,28 +28,26 @@ public class UserDaoService {
 		return users;
 	}
 
-//	To find One user by id
+//	Find One user by id
 	public User findById(int id) {
 		Predicate<? super User> predicate = user -> user.getId().equals(id);
 		return users.stream().filter(predicate).findFirst().orElse(null);
-		
+
 	}
-	
-//	To add new user
+
+//	Add new user
 	public User save(User user) {
 		user.setId(++userCount);
 		users.add(user);
-		
+
 		return user;
 	}
 
-	
+//	DELETE user by Id
+	public void deleteById(int id) {
+		Predicate<? super User> predicate = user -> user.getId().equals(id);
+		users.removeIf(predicate);
 
-	
-	
-	
-//	save
-
-
+	}
 
 }
