@@ -32,7 +32,7 @@ public class UserDaoService {
 //	To find One user by id
 	public User findById(int id) {
 		Predicate<? super User> predicate = user -> user.getId().equals(id);
-		return users.stream().filter(predicate).findFirst().get();
+		return users.stream().filter(predicate).findFirst().orElse(null);
 		
 	}
 	
